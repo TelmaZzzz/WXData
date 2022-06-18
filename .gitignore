@@ -1,0 +1,7 @@
+/log
+/model
+/output
+*.json
+*.zip
+*.csv
+*__pycache__
