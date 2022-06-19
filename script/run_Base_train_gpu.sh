@@ -6,7 +6,7 @@ ROOT="/users10/lyzhang/opt/tiger/WXData"
 export PYTHONPATH="$HOME/opt/tiger/WXData"
 
 
-# PRETRAIN="chinese_roberta_wwm_ext"
+PRETRAIN="chinese_roberta_wwm_ext"
 # PRETRAIN="/users10/lyzhang/opt/tiger/WXData/model/Pretrain/roberta_test"
 # PRETRAIN="chinese_roberta_wwm_ext_large"
 # PRETRAIN="chinese_macbert_base"
@@ -14,7 +14,8 @@ export PYTHONPATH="$HOME/opt/tiger/WXData"
 # $HOME/model/$PRETRAIN
 # PRETRAIN="/users10/lyzhang/opt/tiger/WXData/model/Pretrain/2022_06_06_21_02_38" # base
 # PRETRAIN="/users10/lyzhang/opt/tiger/WXData/model/Pretrain/2022_06_07_21_50_43" # large
-PRETRAIN="/users10/lyzhang/opt/tiger/WXData/model/Pretrain/2022_06_14_20_25_33" # base itm itc mlm
+# PRETRAIN="/users10/lyzhang/opt/tiger/WXData/model/Pretrain/2022_06_14_20_25_33" # base itm itc mlm
+PRETRAIN="/users10/lyzhang/opt/tiger/WXData/model/Pretrain/2022_06_18_23_00_36" # db_v1 base itm itc mlm
 
 python ../src/Base.py \
 --train \
@@ -35,9 +36,9 @@ python ../src/Base.py \
 --mask_ratio=0.0 \
 --mode="base" \
 --patience_maxn=5 \
---ema \
---model_name="v3" \
+--model_name="db_v1" \
 --fgm \
+# --ema \
 # --awp \
 # --awp_up=0.61 \
 # --awp_lr=5e-3 \

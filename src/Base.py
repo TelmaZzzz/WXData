@@ -46,6 +46,8 @@ def WXBase(args):
         trainer = Trainer.WXTrainerV2(args)
     elif args.model_name == "v3":
         trainer = Trainer.WXTrainerV3(args)
+    elif args.model_name == "db_v1":
+        trainer = Trainer.DoubleWXTrainer(args)
     trainer.trainer_init(len(train_iter), valid_datasets, sz=len(tokenizer))
     logging.info(f"Train Size: {len(train_iter)}")
     for epoch in range(args.epoch):
@@ -131,35 +133,46 @@ def predict(args):
         {
             "model_path": [
                 ("/users10/lyzhang/opt/tiger/WXData/model/Base/2022_06_13_19_26_33/Fold_0.bin", 1),
-                ("/users10/lyzhang/opt/tiger/WXData/model/Base/2022_06_13_20_43_30/Fold_1.bin", 1),
-                ("/users10/lyzhang/opt/tiger/WXData/model/Base/2022_06_13_20_43_52/Fold_2.bin", 1),
-                ("/users10/lyzhang/opt/tiger/WXData/model/Base/2022_06_13_20_44_21/Fold_3.bin", 1),
-                ("/users10/lyzhang/opt/tiger/WXData/model/Base/2022_06_13_20_41_58/Fold_4.bin", 1),
+                # ("/users10/lyzhang/opt/tiger/WXData/model/Base/2022_06_13_20_43_30/Fold_1.bin", 1),
+                # ("/users10/lyzhang/opt/tiger/WXData/model/Base/2022_06_13_20_43_52/Fold_2.bin", 1),
+                # ("/users10/lyzhang/opt/tiger/WXData/model/Base/2022_06_13_20_44_21/Fold_3.bin", 1),
+                # ("/users10/lyzhang/opt/tiger/WXData/model/Base/2022_06_13_20_41_58/Fold_4.bin", 1),
             ],
             "pretrain_path": "/users10/lyzhang/opt/tiger/WXData/model/Pretrain/2022_06_06_21_02_38",
             "version": "v2",
         },
+        # {
+        #     "model_path": [
+        #         ("/users10/lyzhang/opt/tiger/WXData/model/Base/2022_06_13_20_44_41/Fold_5.bin", 1),
+        #         ("/users10/lyzhang/opt/tiger/WXData/model/Base/2022_06_13_20_44_56/Fold_6.bin", 1),
+        #         ("/users10/lyzhang/opt/tiger/WXData/model/Base/2022_06_13_23_11_59/Fold_7.bin", 1),
+        #         ("/users10/lyzhang/opt/tiger/WXData/model/Base/2022_06_13_23_11_45/Fold_8.bin", 1),
+        #         ("/users10/lyzhang/opt/tiger/WXData/model/Base/2022_06_13_23_11_31/Fold_9.bin", 1),
+        #     ],
+        #     "pretrain_path": "/users10/lyzhang/opt/tiger/WXData/model/Pretrain/2022_06_07_21_50_43",
+        #     "version": "v2",
+        # },
         {
             "model_path": [
-                ("/users10/lyzhang/opt/tiger/WXData/model/Base/2022_06_13_20_44_41/Fold_5.bin", 1),
-                ("/users10/lyzhang/opt/tiger/WXData/model/Base/2022_06_13_20_44_56/Fold_6.bin", 1),
-                ("/users10/lyzhang/opt/tiger/WXData/model/Base/2022_06_13_23_11_59/Fold_7.bin", 1),
-                ("/users10/lyzhang/opt/tiger/WXData/model/Base/2022_06_13_23_11_45/Fold_8.bin", 1),
-                ("/users10/lyzhang/opt/tiger/WXData/model/Base/2022_06_13_23_11_31/Fold_9.bin", 1),
-            ],
-            "pretrain_path": "/users10/lyzhang/opt/tiger/WXData/model/Pretrain/2022_06_07_21_50_43",
-            "version": "v2",
-        },
-        {
-            "model_path": [
-                ("/users10/lyzhang/opt/tiger/WXData/model/Base/2022_06_15_18_43_58/Fold_0.bin", 2),
-                ("/users10/lyzhang/opt/tiger/WXData/model/Base/2022_06_15_20_04_19/Fold_1.bin", 2),
-                ("/users10/lyzhang/opt/tiger/WXData/model/Base/2022_06_15_20_10_47/Fold_2.bin", 2),
-                ("/users10/lyzhang/opt/tiger/WXData/model/Base/2022_06_15_20_11_16/Fold_3.bin", 2),
-                ("/users10/lyzhang/opt/tiger/WXData/model/Base/2022_06_15_20_19_33/Fold_4.bin", 2),
+                ("/users10/lyzhang/opt/tiger/WXData/model/Base/2022_06_15_18_43_58/Fold_0.bin", 1),
+                # ("/users10/lyzhang/opt/tiger/WXData/model/Base/2022_06_15_20_04_19/Fold_1.bin", 2),
+                # ("/users10/lyzhang/opt/tiger/WXData/model/Base/2022_06_15_20_10_47/Fold_2.bin", 2),
+                # ("/users10/lyzhang/opt/tiger/WXData/model/Base/2022_06_15_20_11_16/Fold_3.bin", 2),
+                # ("/users10/lyzhang/opt/tiger/WXData/model/Base/2022_06_15_20_19_33/Fold_4.bin", 2),
             ],
             "pretrain_path": "/users10/lyzhang/opt/tiger/WXData/model/Pretrain/2022_06_14_20_25_33",
             "version": "v3",
+        },
+        {
+            "model_path": [
+                ("/users10/lyzhang/opt/tiger/WXData/model/Base/2022_06_19_14_13_25/Fold_0.bin", 1),
+                # ("/users10/lyzhang/opt/tiger/WXData/model/Base/2022_06_15_20_04_19/Fold_1.bin", 2),
+                # ("/users10/lyzhang/opt/tiger/WXData/model/Base/2022_06_15_20_10_47/Fold_2.bin", 2),
+                # ("/users10/lyzhang/opt/tiger/WXData/model/Base/2022_06_15_20_11_16/Fold_3.bin", 2),
+                # ("/users10/lyzhang/opt/tiger/WXData/model/Base/2022_06_15_20_19_33/Fold_4.bin", 2),
+            ],
+            "pretrain_path": "/users10/lyzhang/opt/tiger/WXData/model/Pretrain/2022_06_18_23_00_36",
+            "version": "db_v1",
         },
     ]
     SUM = 0
@@ -170,16 +183,16 @@ def predict(args):
     for model_config in model_list:
         args.pretrain_path = model_config["pretrain_path"]
         tokenizer = AutoTokenizer.from_pretrained(model_config["pretrain_path"], trim_offsets=False)
-        # samples = Utils.prepare_training_data(args.train_path, tokenizer, args.fix_length)
-        samples = Utils.prepare_predict_data(args.train_path, tokenizer, args.fix_length)
+        samples = Utils.prepare_training_data(args.train_path, tokenizer, args.fix_length)
+        # samples = Utils.prepare_predict_data(args.train_path, tokenizer, args.fix_length)
 
-        # train_samples, valid_samples = [], []
-        # for item in samples:
-        #     if item["fold"] != args.fold:
-        #         train_samples.append(item)
-        #     else:
-        #         valid_samples.append(item)
-        # samples = valid_samples
+        train_samples, valid_samples = [], []
+        for item in samples:
+            if item["fold"] != args.fold:
+                train_samples.append(item)
+            else:
+                valid_samples.append(item)
+        samples = valid_samples
 
         valid_datasets = Datasets.BaseDatasetsValid(samples, args.zip_path, tokenizer, is_test=True, fix_length=args.fix_length)
         # valid_datasets = Datasets.BaseDataset(samples, args.zip_path, tokenizer, is_test=True, fix_length=args.fix_length)
@@ -189,6 +202,8 @@ def predict(args):
             predicter = Trainer.WXPredicterV2(args)
         elif model_config["version"] == "v3":
             predicter = Trainer.WXPredicterV3(args)
+        elif model_config["version"] == "db_v1":
+            predicter = Trainer.DoubleWXPredicter(args)
         predicter.trainer_init(valid_datasets)
         valid_iter = torch.utils.data.DataLoader(valid_datasets, batch_size=args.valid_batch_size)
         for model_path in model_config["model_path"]:
@@ -199,15 +214,15 @@ def predict(args):
             else:
                 result += predicter.predict(valid_iter) * (model_path[1] / SUM)
     id_list = [item["vid"] for item in samples]
-    # golds = [item["labels"] for item in samples]
+    golds = [item["labels"] for item in samples]
     result = np.argmax(result, axis=1)
-    # result = Utils.fetch_score(result, golds)
-    # logging.info(result)
-    with open("/users10/lyzhang/opt/tiger/WXData/output/ans_2.csv", 'w') as f:
-        for pred_label_id, ann in zip(result, id_list):
-            video_id = ann
-            category_id = lv2id_to_category_id(pred_label_id)
-            f.write(f'{video_id},{category_id}\n')
+    result = Utils.fetch_score(result, golds)
+    logging.info(result)
+    # with open("/users10/lyzhang/opt/tiger/WXData/output/ans_2.csv", 'w') as f:
+    #     for pred_label_id, ann in zip(result, id_list):
+    #         video_id = ann
+    #         category_id = lv2id_to_category_id(pred_label_id)
+    #         f.write(f'{video_id},{category_id}\n')
 
 
 if __name__ == "__main__":

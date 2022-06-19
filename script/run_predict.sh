@@ -18,10 +18,10 @@ PRETRAIN="chinese_roberta_wwm_ext"
 
 python ../src/Base.py \
 --predict \
---train_path="$ROOT/data/data/annotations/test_a.json" \
---zip_path="$ROOT/data/data/zip_feats/test_a.zip" \
+--train_path="$ROOT/data/labeled_fold_10.json" \
+--zip_path="$ROOT/data/data/zip_feats/labeled.zip" \
 --pretrain_path="/users10/lyzhang/opt/tiger/WXData/model/Pretrain/2022_06_06_21_02_38" \
 --tokenizer_path="/users10/lyzhang/opt/tiger/WXData/model/Pretrain/2022_06_06_21_02_38" \
 --valid_batch_size=64 \
 --fix_length=310 \
-# --fold=0 \
+--fold=0 \

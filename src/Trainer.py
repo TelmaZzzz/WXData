@@ -443,3 +443,41 @@ class WXPredicterV3(WXTrainerV3):
         self.set_valid_datasets(valid_datasets, valid_collate)
         if self.trainer_config.model_load is not None:
             self.model_load(self.trainer_config.model_load)
+
+
+import Model_Double
+
+
+class DoubleWXTrainer(BaseTrainer):
+    def __init__(self, args):
+        super(DoubleWXTrainer, self).__init__(args)
+
+    def build_model(self):
+        self.model = Model_Double.DoubleWXDataModel(self.model_config)
+
+
+class DoublePretrainTrainer(PretrainTrainer):
+    def __init__(self, args):
+        super(DoublePretrainTrainer, self).__init__(args)
+
+    def build_model(self):
+        config = AutoConfig.from_pretrained(self.model_config.pretrain_path)
+        config.update({
+            "fusion_layer": 6,
+            "encoder_width": config.hidden_size,
+        })
+        # from Model import WXDataPretrainModel
+        self.model = Model_Double.VTPretrainModel.from_pretrained(self.model_config.pretrain_path, config=config)
+
+
+class DoubleWXPredicter(DoubleWXTrainer):
+    def __init__(self, args):
+        super(DoubleWXPredicter, self).__init__(args)
+    
+    def trainer_init(self, valid_datasets, valid_collate=None, sz=0):
+        self.model_init()
+        if sz > 0:
+            self.resize_token_embeddings(sz)
+        self.set_valid_datasets(valid_datasets, valid_collate)
+        if self.trainer_config.model_load is not None:
+            self.model_load(self.trainer_config.model_load)

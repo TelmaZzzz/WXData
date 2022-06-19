@@ -277,6 +277,7 @@ from category_id_map import category_id_to_lv2id, lv2id_to_lv1id
 def prepare_training_data(data_path, tokenizer, fix_length=256):
     with open(data_path, 'r', encoding='utf8') as f:
         anns = json.load(f)
+    # anns = anns[:1000]
     training_samples = []
     for item in anns:
         vid = item["id"]

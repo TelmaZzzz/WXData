@@ -13,10 +13,10 @@ PRETRAIN="chinese_roberta_wwm_ext"
 python ../src/Base.py \
 --train \
 --debug \
---train_path="$ROOT/data/labeled_fold_5.json" \
+--train_path="$ROOT/data/labeled_fold_10.json" \
 --zip_path="$ROOT/data/data/zip_feats/labeled.zip" \
---pretrain_path="/users10/lyzhang/opt/tiger/WXData/model/Pretrain/2022_06_06_21_02_38" \
---tokenizer_path="/users10/lyzhang/opt/tiger/WXData/model/Pretrain/2022_06_06_21_02_38" \
+--pretrain_path="$HOME/model/$PRETRAIN" \
+--tokenizer_path="$HOME/model/$PRETRAIN" \
 --model_save="$ROOT/model/Base" \
 --fold=0 \
 --epoch=50 \
@@ -29,7 +29,5 @@ python ../src/Base.py \
 --mask_prob=0.0 \
 --mask_ratio=0.0 \
 --mode="base" \
---fgm \
---model_name="v2" \
---freeze_nums=12 \
+--model_name="db_v1" \
 > ../log/Base_train.log 2>&1 &

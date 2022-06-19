@@ -48,7 +48,10 @@ if args.debug:
 train_datasets = Datasets.PretrainDatasets(train_samples, args.zip_path, tokenizer, args.mask_ratio, fix_length=args.fix_length)
 valid_datasets = Datasets.PretrainDatasets(valid_samples, args.zip_path, tokenizer, args.mask_ratio, is_test=True, fix_length=args.fix_length)
 train_iter = torch.utils.data.DataLoader(train_datasets, batch_size=args.train_batch_size, shuffle=True)
-trainer = Trainer.PretrainTrainer(args)
+if args.model_name == "db_v1":
+    trainer = Trainer.DoublePretrainTrainer(args)
+else:
+    trainer = Trainer.PretrainTrainer(args)
 tokenizer.save_pretrained(args.model_save)
 trainer.trainer_init(len(train_iter), valid_datasets, sz=len(tokenizer))
 logging.info(f"Train Size: {len(train_iter)}")
